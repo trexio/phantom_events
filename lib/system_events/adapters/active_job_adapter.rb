@@ -2,16 +2,14 @@ module SystemEvents
   module Adapters
     class ActiveJobAdapter
 
-      class AdapterJob < ActiveJob::Base # inject custom parent class
-        queue_as :default # make this configurable
-
-        def perform(klass, event_name, *args, **kwargs)
-          klass.new.public_send(event_name, *args, **kwargs)
-        end
-      end
-
-      def initialize(listeners_path:)
+      def initialize(listeners_path:,
+                     parent_class: ActiveJob::Base,
+                     default_queue: :default)
         @listeners_path = listeners_path
+        @parent_class = parent_class
+        @default_queue = default_queue
+
+        setup_adapter_job_class!
       end
 
       def handle_event(event_name, *args, **kwargs)
@@ -26,7 +24,7 @@ module SystemEvents
 
       private
 
-      attr_reader :listeners_path
+      attr_reader :listeners_path, :parent_class, :default_queue
 
       def listeners
         listeners_path.glob("**/*.rb").map do |pathname|
@@ -39,6 +37,18 @@ module SystemEvents
         listeners.select do |listener|
           listener.instance_methods.include?(event_name)
         end
+      end
+
+      def setup_adapter_job_class!
+        klass = Class.new parent_class do
+
+          def perform(klass, event_name, *args, **kwargs)
+            klass.new.public_send(event_name, *args, **kwargs)
+          end
+        end
+        klass.queue_as default_queue
+
+        self.class.const_set(:AdapterJob, klass)
       end
     end
   end
