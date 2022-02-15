@@ -12,6 +12,12 @@ module SystemEvents
   end
 
   def self.configure(&block)
-    @config = Configuration.new(&block)
+    if defined?(::Rails)
+      Rails.application.config.to_prepare do
+        @config = Configuration.new(&block)
+      end
+    else
+      @config = Configuration.new(&block)
+    end
   end
 end
