@@ -48,6 +48,7 @@ module SystemEvents
         end
         klass.queue_as default_queue
 
+        self.class.send(:remove_const, :AdapterJob) if defined?(AdapterJob)
         self.class.const_set(:AdapterJob, klass)
       end
     end
