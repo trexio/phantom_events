@@ -8,6 +8,10 @@ module SystemEvents
       end
 
       def handle_event(event_name, *args, **kwargs)
+        if args.last.is_a?(Hash) && kwargs.empty?
+          kwargs = args.pop.symbolize_keys!
+        end
+
         message = {
           event_name: event_name,
           args:       args,
