@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
-require_relative 'system_events/version'
-require_relative 'system_events/configuration'
-require_relative 'system_events/publisher'
+require_relative 'phantom_events/version'
+require_relative 'phantom_events/configuration'
+require_relative 'phantom_events/publisher'
 
-module SystemEvents
+module PhantomEvents
   class Error < StandardError; end
 
   def self.config

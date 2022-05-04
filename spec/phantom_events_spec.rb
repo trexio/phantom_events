@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-RSpec.describe SystemEvents do
+RSpec.describe PhantomEvents do
   it "has a version number" do
-    expect(SystemEvents::VERSION).not_to be nil
+    expect(PhantomEvents::VERSION).not_to be nil
   end
 
   it "does something useful" do

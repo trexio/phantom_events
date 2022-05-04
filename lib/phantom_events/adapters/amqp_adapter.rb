@@ -1,4 +1,4 @@
-module SystemEvents
+module PhantomEvents
   module Adapters
     class AmqpAdapter
 
@@ -21,7 +21,7 @@ module SystemEvents
         exchange.publish(message)
       end
 
-      def handles_event?(event_name)
+      def handles_event?(_)
         true
       end
 

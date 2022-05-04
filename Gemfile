@@ -2,9 +2,9 @@
 
 source "https://rubygems.org"
 
-# Specify your gem's dependencies in system_events.gemspec
+# Specify your gem's dependencies in phantom_events.gemspec
 gemspec
 
 gem "rake", "~> 13.0"
-gem "rspec", "~> 5.0"
+gem "rspec", "~> 3.11"
 gem "rubocop", "~> 1.25"

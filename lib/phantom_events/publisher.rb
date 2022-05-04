@@ -1,4 +1,4 @@
-module SystemEvents
+module PhantomEvents
   module Publisher
     def publish(event_name, *args, **kwargs)
       adapters_for(event_name).each do |adapter|
@@ -11,7 +11,7 @@ module SystemEvents
     private
 
     def adapters_for(event_name)
-      SystemEvents.config.adapters.select do |adapter|
+      PhantomEvents.config.adapters.select do |adapter|
         adapter.handles_event?(event_name)
       end
     end

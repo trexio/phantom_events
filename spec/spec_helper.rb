@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require "system_events"
+require "phantom_events"
 
 RSpec.configure do |config|
   # Enable flags like --only-failures and --next-failure

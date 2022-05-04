@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    system_events (0.1.0)
+    phantom_events (0.0.1)
 
 GEM
   remote: https://rubygems.org/
@@ -15,19 +15,19 @@ GEM
     rake (13.0.6)
     regexp_parser (2.2.0)
     rexml (3.2.5)
-    rspec (3.10.0)
-      rspec-core (~> 3.10.0)
-      rspec-expectations (~> 3.10.0)
-      rspec-mocks (~> 3.10.0)
-    rspec-core (3.10.2)
-      rspec-support (~> 3.10.0)
-    rspec-expectations (3.10.2)
+    rspec (3.11.0)
+      rspec-core (~> 3.11.0)
+      rspec-expectations (~> 3.11.0)
+      rspec-mocks (~> 3.11.0)
+    rspec-core (3.11.0)
+      rspec-support (~> 3.11.0)
+    rspec-expectations (3.11.0)
       diff-lcs (>= 1.2.0, < 2.0)
-      rspec-support (~> 3.10.0)
-    rspec-mocks (3.10.2)
+      rspec-support (~> 3.11.0)
+    rspec-mocks (3.11.1)
       diff-lcs (>= 1.2.0, < 2.0)
-      rspec-support (~> 3.10.0)
-    rspec-support (3.10.3)
+      rspec-support (~> 3.11.0)
+    rspec-support (3.11.0)
     rubocop (1.25.0)
       parallel (~> 1.10)
       parser (>= 3.1.0.0)
@@ -46,10 +46,10 @@ PLATFORMS
   x86_64-darwin-20
 
 DEPENDENCIES
+  phantom_events!
   rake (~> 13.0)
-  rspec (~> 3.0)
-  rubocop (~> 1.21)
-  system_events!
+  rspec (~> 3.11)
+  rubocop (~> 1.25)
 
 BUNDLED WITH
    2.3.6
