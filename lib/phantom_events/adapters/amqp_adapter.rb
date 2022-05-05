@@ -2,7 +2,7 @@ module PhantomEvents
   module Adapters
     class AmqpAdapter
 
-      def initialize(dsn: ENV['AMQP_URL'], exchange_name: :events)
+      def initialize(dsn: ENV['RABBITMQ_URL'], exchange_name: :events)
         @dsn = dsn
         @exchange_name = exchange_name
       end
