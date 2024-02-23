@@ -21,9 +21,9 @@ module PhantomEvents
         exchange.publish(message)
       end
 
-      def handles_event?(_)
-        true
-      end
+      # def handles_event?(_)
+      #   true
+      # end
 
       private
 

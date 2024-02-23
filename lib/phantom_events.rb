@@ -3,6 +3,7 @@
 require_relative 'phantom_events/version'
 require_relative 'phantom_events/configuration'
 require_relative 'phantom_events/publisher'
+require_relative 'phantom_events/listener'
 
 module PhantomEvents
   class Error < StandardError; end

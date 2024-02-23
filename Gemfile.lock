@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    phantom_events (0.0.2)
+    phantom_events (0.0.3)
 
 GEM
   remote: https://rubygems.org/
@@ -44,6 +44,7 @@ GEM
 
 PLATFORMS
   x86_64-darwin-20
+  x86_64-darwin-22
 
 DEPENDENCIES
   phantom_events!
