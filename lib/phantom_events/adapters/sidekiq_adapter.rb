@@ -11,16 +11,14 @@ module PhantomEvents
       end
 
       def handle_event(event_name, *args, **kwargs)
-        listeners_for_event(event_name).each do |listener_klass|
+        listeners.each do |listener_klass|
+          next unless listener_klass._handles_event?(event_name)
+
           args.each do |arg|
             arg.stringify_keys! if arg.is_a?(Hash)
           end
           AdapterJob.perform_async(listener_klass.to_s, event_name.to_s, *args, kwargs.to_hash)
         end
-      end
-
-      def handles_event?(event_name)
-        listeners_for_event(event_name).any?
       end
 
       private
@@ -31,12 +29,6 @@ module PhantomEvents
         listeners_path.glob("**/*.rb").map do |pathname|
           relative = pathname.relative_path_from(listeners_path).sub_ext("")
           relative.to_s.classify.safe_constantize
-        end
-      end
-
-      def listeners_for_event(event_name)
-        listeners.select do |listener|
-          listener.instance_methods.include?(event_name)
         end
       end
 
