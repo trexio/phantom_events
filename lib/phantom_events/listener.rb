@@ -15,12 +15,13 @@ module PhantomEvents
     def _handle_event(event_name, *args, **kwargs)
       return unless self.class._handles_event?(event_name)
 
-      matched_kwargs = kwargs.slice(*_matched_kwargs_keys(event_name, **kwargs))
+      matched_kwargs = kwargs.symbolize_keys!.slice(*_matched_kwargs_keys(event_name, **kwargs))
 
       public_send(event_name, *args, **matched_kwargs)
     end
 
     def _matched_kwargs_keys(event_name, **kwargs)
+      kwargs = kwargs.symbolize_keys!
       method_params = method(event_name).parameters
       return kwargs.keys if method_params.any? { |type, _| type == :keyrest }
 
@@ -39,7 +40,7 @@ module PhantomEvents
       end
 
       def _handles_event?(event_name)
-        instance_methods.include?(event_name)
+        instance_methods.include?(event_name.to_sym)
       end
     end
   end
