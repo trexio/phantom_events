@@ -37,7 +37,7 @@ module PhantomEvents
         listeners_path.glob("**/*.rb").map do |pathname|
           relative = pathname.relative_path_from(listeners_path).sub_ext("")
           relative.to_s.classify.safe_constantize
-        end
+        end.compact.select { |klass| klass.include?(PhantomEvents::Listener) }
       end
 
       def setup_adapter_job_class!
